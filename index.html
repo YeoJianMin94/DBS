@@ -1,53 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="newcss.css">
 
-        <meta charset="utf-8">
-        <title>DBS IBanking</title>
-    </head>
+<head>
+    <link rel="stylesheet" href="./assests/reset.css">
+    <link rel="stylesheet" href="./assests/newcss.css">
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <body>
-        <!-- Navigation -->
-        <header>
-            <h1>DBS</h1>
-        </header>
+    <meta charset="utf-8">
+    <title>DBS IBanking</title>
+</head>
 
-        <nav class="nav">
-            <a href="index.php">Home</a><br>
-            <a href="#">Transfer</a><br>
-            <a href="#">Pay</a><br>
-            <a href="#">Cards</a><br>
-            <a href="#">Plan</a><br>
-            <a href="#">Invest</a>    
-        </nav>
+<body>
+    <!-- Navigation -->
+    <header>
+        <h1>DBS</h1>
+    </header>
 
-        <!--Dashboards-->
-        <main>
-            <h1>Dashboards</h1>
-            <table style="width:100%">
-                <tr>
-                    <td><h3><U>Savings</U></h3></td>
-                    <td><h3><U>Credit card 1</U></h3></td> 
-                    <td><h3><U>Credit card 2</U></h3></td>
-                </tr>
-                <tr>
-                    <td><img src="./assets/image/pie.png" alt="Lights" style="width:90%"></td>
-                    <td><img src="./assets/image/pie.png" alt="Lights" style="width:90%"></td> 
-                    <td><img src="./assets/image/pie.png" alt="Lights" style="width:90%"></td>
-                </tr>
+    <nav class="nav">
+        <a href="index.php">Home</a><br>
+        <a href="#">Transfer</a><br>
+        <a href="#">Pay</a><br>
+        <a href="#">Cards</a><br>
+        <a href="#">Plan</a><br>
+        <a href="#">Invest</a>
+    </nav>
 
-            </table>
+    <!--Dashboards-->
+    <main>
+        <h1>Dashboards</h1>
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <h3><U>Savings</U></h3>
+                </td>
+                <td>
+                    <h3><U>Credit card 1</U></h3>
+                </td>
+                <td>
+                    <h3><U>Credit card 2</U></h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="container" style="width: 100%; height: 100%"></div>
+                    <script type="text/javascript">
+                        var debitTotal, creditTotal;
+                        var balance = {};e
+                        console.log("TEST")
+                        $.getJSON("http://localhost:3000/customers/transactionsbalance/10", function (data) {
+                            balance = data
+                            // $.each(data, function (key, val) {
+                            //     if (key == "debit") {
+                            //         debitTotal = val;
+                            //     }
+                            //     if (key == "credit") {
+                            //         creditTotal = val;
+                            //     }
+                            // })
+                            // balance = {
+                            //     debit: debitTotal,
+                            //     credit: creditTotal
+                            // }
+                        })
+                        console.log(balance)
+                        anychart.onDocumentReady(function () {
 
-            <hr>
-            <br>
-        </main>
+                            // set the data
+                            var data = [
+                                { x: "Debit", value: debitTotal },
+                                { x: "Credit", value: creditTotal }
+                            ];
 
-        <footer >
-            <p>Copyright©2018 - DBS</p> 
-        </footer>
+                            // create the chart
+                            var chart = anychart.pie();
 
-    </body>
+                            // set the chart title
+                            chart.title("Total Debit vs Total Crebit");
+
+                            // add the data
+                            chart.data(data);
+
+                            // display the chart in the container
+                            chart.container('container');
+                            chart.draw();
+
+                        });
+                    </script>
+                </td>
+                <td><img src="./assets/image/pie.png" alt="Lights" style="width:90%"></td>
+                <td><img src="./assets/image/pie.png" alt="Lights" style="width:90%"></td>
+            </tr>
+
+        </table>
+
+        <hr>
+        <br>
+    </main>
+
+    <footer>
+        <p>Copyright©2018 - DBS</p>
+    </footer>
+
+</body>
 
 </html>

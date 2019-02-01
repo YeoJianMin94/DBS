@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 1, 2018, 3:17:37 PM
+    Author     : derri
+*/
+
+header, footer {   
+    color: white;   
+    background-color: red;   
+    margin: 0em 0em 0em 0em;
+    border: 10px solid red;
+    text-align: center;
+}
+
+
+main{
+    margin-left: 120px;
+    padding: 1.5em;
+    border-left: 1px solid black;
+}
+
+body {  font-family: Georgia, Cambria, "Times New Roman", serif;  
+        font-size: 100%;  
+        background-color: white; 
+} 
+
+h1{
+    font-size-adjust: 100;
+}
+
+a{
+    color: coral;
+}
+
+h3 {
+    margin-top: 5px;
+    color: olive;
+    font-size: 120%;
+}
+
+.nav{
+    text-align: left;
+    float: left;
+    max-width: 160px;
+    padding: 1em;
+    font-family: Georgia, Cambria, "Times New Roman", serif;
+}
+
+li{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 3em;
+}

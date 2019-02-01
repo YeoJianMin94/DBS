@@ -7,10 +7,10 @@
     <script src="https://cdn.anychart.com/js/8.0.1/anychart-core.min.js"></script>
     <script src="https://cdn.anychart.com/js/8.0.1/anychart-pie.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="plotly-latest.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
     <script src='pie.js'></script>
+    <!-- <script src='Spending.js'></script> -->
 
     <meta charset="utf-8">
     <title>DBS IBanking</title>
@@ -37,69 +37,111 @@
         <table style="width:100%">
             <tr>
                 <td>
-                    <h3><U>Savings</U></h3>
+                    <h3><U>Debit & Credit</U></h3>
                 </td>
                 <td>
-                    <h3><U>Credit card 1</U></h3>
+                    <h3><U>Monthly Expenditure Breakdown</U></h3>
                 </td>
                 <td>
-                    <h3><U>Credit card 2</U></h3>
+                    <h3><U>Monthly Expenditure Report</U></h3>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div id="PieGraph1" style="width: 100%; height: 100%"></div>
-                    <!--
-                    <div id="container" style="width: 100%; height: 100%"></div>
-                    <script type="text/javascript">
-                        var debitTotal, creditTotal;
-                        var balance = {};
-                        console.log("TEST")
-                        $.getJSON("http://localhost:3000/customers/transactionsbalance/10", function (data) {
-                            balance = data
-                            // $.each(data, function (key, val) {
-                            //     if (key == "debit") {
-                            //         debitTotal = val;
-                            //     }
-                            //     if (key == "credit") {
-                            //         creditTotal = val;
-                            //     }
-                            // })
-                            // balance = {
-                            //     debit: debitTotal,
-                            //     credit: creditTotal
-                            // }
-                        })
-                        console.log(balance)
-                        anychart.onDocumentReady(function () {
-
-                            // set the data
-                            var data = [
-                                { x: "Debit", value: debitTotal },
-                                { x: "Credit", value: creditTotal }
-                            ];
-
-                            // create the chart
-                            var chart = anychart.pie();
-
-                            // set the chart title
-                            chart.title("Total Debit vs Total Crebit");
-
-                            // add the data
-                            chart.data(data);
-
-                            // display the chart in the container
-                            chart.container('container');
-                            chart.draw();
-
-                        });
-                    </script>
-                    -->
                 </td>
-                <td><img src="./assets/image/pie.png" alt="Lights" style="width:90%"></td>
-                <td><img src="./assets/image/pie.png" alt="Lights" style="width:90%"></td>
+                <td>
+                    <!-- <div id="PieGraph2" style="width: 100%; height: 100%"></div> -->
+                    <img src="./Monthlyexpenditurebreakdown.jpg" style="width: 480px; height: 480px">
+                </td>
+                <td>
+                    <img src="./Barchart.jpeg" style="width: 480px; height: 480px">
+                </td>
             </tr>
 
+        </table>
+        <table>
+            <td>
+                <table col width="400">
+                    <tr>
+                        <td>
+                            <h3>
+                                <u>
+                                    Quick Transfer
+                                </u>
+                            </h3><br>
+                            <p>Your top 5 payees last month</p>
+                    <tr>
+                        <td>
+                            <p>Person 1</p>
+                        </td>
+                        <td col width="100">
+                            <p>$250</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Person 2</p>
+                        </td>
+                        <td col width="100">
+                            <p>$200</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Person 3</p>
+                        </td>
+                        <td col width="100">
+                            <p>$150</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Person 4</p>
+                        </td>
+                        <td col width="100">
+                            <p>$100</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Person 5</p>
+                        </td>
+                        <td col width="100">
+                            <p>$50</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+
+            </td>
+            <td col width="200">
+                <h3>
+                    <u>
+                        Invest
+                    </u>
+                </h3><br>
+                <p>Your investments:</p><br>
+                <p>Manucare</p><br>
+                <p>Ready Protect</p><br>
+                <p>Ready CompleteCare</p>
+            </td>
+            <td>
+
+            </td>
+            <td col width="200">
+                <h3>
+                    <u>
+                        We recommend
+                    </u>
+                </h3><br>
+                <p>Investing in:</p><br>
+                <p>InvestReady Wealth (I)</p><br>
+                <p>InvestReady Wealth (II)</p><br>
+                <p>InvestReady Wealth (III)</p>
+            </td>
+            </tr>
         </table>
 
         <hr>

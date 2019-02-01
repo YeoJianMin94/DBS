@@ -26,6 +26,7 @@ generate_debit_credit = (accountId) => {
           }];
           
         var layout = {
+            title:'Total Debit vs Total Crebit',
             height: 400,
             width: 500
           };

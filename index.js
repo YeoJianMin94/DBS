@@ -53,6 +53,39 @@ app.get("/customers/transactions/:accountId", (req, res, next) => {
         })
 });
 
+//Calculate Credit and Debit Total
+app.get("/customers/transactionsbalance/:accountId", (req, res, next) => {
+    var accountId = req.params.accountId;
+    var debitTotal = 0.0;
+    var creditTotal = 0.0;
+    var total = {};
+    fetch("https://techtrek-api-gateway.cfapps.io/transactions/" + accountId + "?from=01-01-2018&to=02-01-2019", { method: 'GET', headers: headers })
+        .then((res) => {
+            //console.log(res)
+            return res.json()
+        })
+        .then((json) => {
+            json.forEach(v => {
+                if(v['type'] == "DEBIT"){
+                    debitTotal += parseFloat(v['amount'])
+                }
+                if(v['type'] == "CREDIT"){
+                    creditTotal += parseFloat(v['amount'])
+                } 
+            });
+            total = {
+                debit: debitTotal.toFixed(2),
+                credit: creditTotal.toFixed(2)
+            }
+            console.log("Total Debit: " + debitTotal.toFixed(2))
+            console.log("Total Credit: " + creditTotal.toFixed(2))
+            console.log(total)
+            // console.log(json)
+            return res.total;
+        })
+});
+
+
 //Accounts
 //List Of Deposit Accounts
 app.get("/customers/deposit/:customerId", (req, res, next) => {

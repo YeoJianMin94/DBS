@@ -66,22 +66,64 @@ app.get("/customers/transactionsbalance/:accountId", (req, res, next) => {
         })
         .then((json) => {
             json.forEach(v => {
-                if(v['type'] == "DEBIT"){
+                if (v['type'] == "DEBIT") {
                     debitTotal += parseFloat(v['amount'])
                 }
-                if(v['type'] == "CREDIT"){
+                if (v['type'] == "CREDIT") {
                     creditTotal += parseFloat(v['amount'])
-                } 
+                }
             });
             total = {
-                debit: debitTotal.toFixed(2),
-                credit: creditTotal.toFixed(2)
+                'debit': debitTotal.toFixed(2),
+                'credit': creditTotal.toFixed(2)
             }
             console.log("Total Debit: " + debitTotal.toFixed(2))
             console.log("Total Credit: " + creditTotal.toFixed(2))
             console.log(total)
             // console.log(json)
-            return res.total;
+            res.json(total);
+        })
+});
+
+//Calculate Tag Total
+app.get("/customers/transactionsbalance/:accountId", (req, res, next) => {
+    var accountId = req.params.accountId;
+    var ATM = 0.0;
+    var TRANSPORT = 0.0;
+    var TRANSFER = 0.0;
+    var FB = 0.0
+    var total = {};
+    fetch("https://techtrek-api-gateway.cfapps.io/transactions/" + accountId + "?from=01-01-2018&to=02-01-2019", { method: 'GET', headers: headers })
+        .then((res) => {
+            //console.log(res)
+            return res.json()
+        })
+        .then((json) => {
+            json.forEach(v => {
+                if (v['tag'] == "ATM") {
+                    ATM += parseFloat(v['amount'])
+                }
+                if (v['tag'] == "TRANSPORT") {
+                    TRANSPORT += parseFloat(v['amount'])
+                }
+                if (v['tag'] == "TRANSFER") {
+                    TRANSFER += parseFloat(v['amount'])
+                }
+                if (v['tag'] == "FB") {
+                    FB += parseFloat(v['amount'])
+                }
+            });
+            total = {
+                'ATM': ATM.toFixed(2),
+                'TRANSPORT': TRANSPORT.toFixed(2),
+                'TRANSFER': TRANSFER.toFixed(2),
+                'FB' : FB.toFixed(2)
+            }
+            // console.log("Total Debit: " + debitTotal.toFixed(2))
+            // console.log("Total Credit: " + creditTotal.toFixed(2))
+            // console.log(total)
+            // console.log(json)
+            res.json(total);
         })
 });
 
@@ -169,7 +211,7 @@ app.get("/marketing/:messageId", (req, res, next) => {
 //Personal Messages
 app.get("/message/:customerId", (req, res, next) => {
     var customerId = req.params.customerId;
-    fetch("https://techtrek-api-gateway.cfapps.io/message/" + customerId  , { method: 'GET', headers: headers })
+    fetch("https://techtrek-api-gateway.cfapps.io/message/" + customerId, { method: 'GET', headers: headers })
         .then((res) => {
             //console.log(res)
             return res.json()
